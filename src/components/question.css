@@ -1,16 +1,29 @@
 .question {
+  position: relative;
   display: grid;
-  gap: 9px;
-  padding-bottom: 4px;
+  gap: 7px;
+  padding: 12px 10px 9px;
+  border: 2px solid #747887;
+  border-radius: 19px;
+  background: linear-gradient(145deg, #202d42, #0d1727 60%, #172137);
+  box-shadow: inset 0 0 0 3px #090d17, inset 0 0 0 4px #48566c,
+              0 2px 0 #363d4d, 0 5px 12px #03060c99;
+}
+.question::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 19px;
+  height: 4px;
+  border-radius: 6px;
+  background: radial-gradient(circle at 5px 50%, #82d8ee 0 1px, transparent 2px), #101520;
+  transform: translateX(-50%);
 }
 
 .quest-card {
   position: relative;
-  padding: 11px;
-  border: 1px solid #a8a6c2;
-  border-radius: 17px 7px 17px 7px;
-  background: linear-gradient(145deg, #211d35ef, #0e152be8 72%);
-  box-shadow: inset 0 1px #ffd6de24, 0 5px 15px #080c174d;
+  padding: 3px 2px;
 }
 
 .quest-prompt {
@@ -128,11 +141,89 @@
 .quest-continue:disabled::before { background: #858397; }
 .quest-continue:disabled::after { background: #292d44; }
 .quest-skip { justify-self: center; min-height: 44px; background: #12182de8; border-radius: 8px; padding: 4px 10px; text-decoration: underline; font-size: 12px; }
+
+.tablet-departure, .scene-art.tablet-pass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  pointer-events: none;
+}
+.tablet-departure {
+  height: auto;
+  transform-origin: 51% 28%;
+  animation: approach-tablet 450ms ease-in both;
+}
+.tablet-pass { overflow: hidden; animation: tablet-handoff 950ms linear both; }
+.tablet-pass img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 48%;
+  animation: pass-to-explorer 950ms ease-out both;
+}
+.game-screen[data-tablet-entry] .question {
+  transform-origin: 50% 82%;
+  animation: raise-tablet 360ms cubic-bezier(.2,.75,.25,1) 530ms both;
+}
+.game-screen[data-tablet-entry] .question:focus-within { animation: none; }
+@keyframes approach-tablet {
+  from { opacity: 1; transform: scale(1.065); }
+  45% { opacity: 1; }
+  to { opacity: 0; transform: scale(1.28); }
+}
+@keyframes tablet-handoff {
+  0%, 10% { opacity: 0; }
+  30%, 69% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes pass-to-explorer {
+  from { transform: scale(1.12) translateX(2.5%); }
+  to { transform: scale(1.04) translateX(-1%); }
+}
+@keyframes raise-tablet {
+  from { opacity: 0; transform: perspective(650px) translateY(18px) rotateX(7deg); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Size the workshop shot to the space above the interactive tablet. */
+@media (orientation: portrait), (min-height: 501px), (min-width: 961px) {
+  .game-screen:has(.question) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto auto auto auto;
+  }
+  .game-screen:has(.question) > .game-header { grid-row: 1; }
+  .game-screen:has(.question) > .scene-heading { grid-row: 2; }
+  .game-screen:has(.question) > .scene-spacer { grid-row: 3; min-height: 0; }
+  .game-screen:has(.question) > .context-content { grid-row: 4; }
+  .game-screen:has(.question) > .storage-warning { grid-row: 5; }
+  .game-screen:has(.question) > .asset-warning { grid-row: 6; margin-top: 4px; }
+  .game-screen:has(.question) > .game-footer { grid-row: 7; }
+  .game-screen:has(.question) > .scene-art {
+    grid-area: 1 / 1 / 4 / 2;
+    width: 100%;
+    height: 100%;
+    object-position: 51% 48%;
+  }
+  .game-screen:has(.question) > .scene-shade {
+    grid-area: 1 / 1 / 4 / 2;
+    background: linear-gradient(#080d1ad9, #080d1a7a 20%, transparent 45%, transparent 88%, #0b1022);
+  }
+}
+@media (orientation: portrait) and (max-height: 550px) {
+  .game-screen:has(.question) > .scene-art { grid-row-start: 2; }
+}
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 960px) {
+  .game-screen:has(.question) > .scene-art { object-position: 49% center; }
+  .tablet-departure, .scene-art.tablet-pass { width: 48%; height: 100%; object-fit: cover; object-position: top center; }
+}
 @media (hover: hover) {
   .rating:hover, .quest-help:hover { border-color: #ffe2e9; }
   .quest-continue:hover:enabled { filter: brightness(1.12); }
 }
 @media (max-width: 359px) {
-  .quest-card { padding: 9px 8px; }
+  .question { padding-inline: 8px; }
   .quest-help { font-size: 11px; padding-inline: 6px; }
 }

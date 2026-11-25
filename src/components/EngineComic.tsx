@@ -17,7 +17,7 @@ export function EngineComic({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <figure className="engine-comic">
       {failed ? <figcaption>{description}</figcaption> : <>
-        <img src={artwork} alt={description}
+        <img src={artwork} alt={description} data-pending={!reduceMotion && !finished ? '' : undefined}
           onLoad={() => setLoaded(true)} onError={() => setFailed(true)}/>
         {!reduceMotion && (
           <svg className="comic-cutscene" viewBox="0 0 1254 1254" aria-hidden="true" focusable="false"
@@ -38,7 +38,6 @@ export function EngineComic({ reduceMotion }: { reduceMotion: boolean }) {
                 </g>
               </mask>
             </defs>
-            <rect width="1254" height="1254" fill="#000"/>
             <g clipPath={`url(#${id}-cockpit)`}>
               <g className="comic-shot cockpit-aperture">
                 <use href={'#' + id + '-art'}/>

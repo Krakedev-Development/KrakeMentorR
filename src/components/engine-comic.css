@@ -10,16 +10,19 @@
 }
 .comic-cutscene { pointer-events: none; }
 .comic-shot { opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .engine-comic img[data-pending] { opacity: 0; }
+}
 
 /* Camera anchors are points on the original 1254 × 1254 page. */
 .engine-camera { transform-origin: 190px 950px; }
 .descent-camera { transform-origin: 865px 900px; }
 .comic-cutscene[data-ready="true"] .comic-shot { opacity: 1; }
-.comic-cutscene[data-revealing] .cockpit-aperture { animation: cockpit-wipe 1.2s cubic-bezier(.32,.02,.24,1) 220ms both; }
-.comic-cutscene[data-revealing] .engine-aperture { animation: engine-slash 280ms 2.35s both; }
-.comic-cutscene[data-revealing] .engine-camera { animation: engine-impact 850ms 2.35s both; }
-.comic-cutscene[data-revealing] .descent-aperture { animation: descent-cut 430ms 3.3s both; }
-.comic-cutscene[data-revealing] .descent-camera { animation: follow-ship 1.45s 3.3s both; }
+.comic-cutscene[data-revealing] .cockpit-aperture { animation: cockpit-wipe 380ms cubic-bezier(.32,.02,.24,1) both; }
+.comic-cutscene[data-revealing] .engine-aperture { animation: engine-slash 210ms 360ms both; }
+.comic-cutscene[data-revealing] .engine-camera { animation: engine-impact 380ms 360ms both; }
+.comic-cutscene[data-revealing] .descent-aperture { animation: descent-cut 280ms 690ms both; }
+.comic-cutscene[data-revealing] .descent-camera { animation: follow-ship 500ms 690ms both; }
 
 @keyframes cockpit-wipe {
   from { clip-path: inset(0 100% 0 0) view-box; }

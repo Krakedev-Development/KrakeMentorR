@@ -87,7 +87,7 @@ describe('flujo y respuestas', () => {
  });
  it('muestra alternativa cuando falta una imagen', () => {
  question(); fireEvent.error(screen.getByRole('img'));
- expect(screen.getByRole('status')).toHaveTextContent('scene-workshop.png');
+ expect(screen.getByRole('status')).toHaveTextContent('workshop-tablet.webp');
  expect(screen.getAllByRole('radio')).toHaveLength(5);
  });
  it('activa reducción manual y respeta la preferencia del sistema', () => {

@@ -63,7 +63,7 @@ En móvil, la ilustración cede espacio para que el diálogo o la actividad quep
 
 Cada escenario combina una ilustración y un MP4 local en `src/game/config.ts`. El juego muestra la ilustración hasta que empieza el video. Con movimiento reducido utiliza la imagen fija. Los turnos del taller comparten la reproducción y el encuadre sigue al personaje que habla.
 
-Los cuatro bucles silenciosos están en `public/assets/motion/`. Se pueden ajustar y volver a renderizar desde las ilustraciones originales con los scripts de `tools/motion/`. Python, NumPy, Pillow, OpenCV y FFmpeg se usan durante la edición de los clips. Para jugar basta con ejecutar el proyecto web.
+Al abrir la actividad, la escena pasa al explorador respondiendo en la tablet de Krake. Los cinco bucles silenciosos están en `public/assets/motion/`. Se pueden ajustar y volver a renderizar desde las ilustraciones originales con los scripts de `tools/motion/`. Python, NumPy, Pillow, OpenCV y FFmpeg se usan durante la edición de los clips. Para jugar basta con ejecutar el proyecto web.
 
 
 

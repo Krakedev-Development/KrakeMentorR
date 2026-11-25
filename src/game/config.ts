@@ -24,12 +24,17 @@ const workshop: SceneArtwork = {
  video: '/assets/motion/workshop.mp4',
  description: 'El explorador, Krake y el mecánico frente a una máquina averiada en el taller.',
 };
+const tablet: SceneArtwork = {
+ poster: '/assets/workshop-tablet.webp',
+ video: '/assets/motion/tablet.mp4',
+ description: 'El explorador sostiene la tablet de Krake y toca la pantalla para responder en el taller.',
+};
 export const sceneConfig: Record<SceneId, SceneDefinition> = {
  space_travel: { title: 'Rumbo a la Tierra', location: 'EN TRÁNSITO', artwork: travel, dialogues: [{ speaker: 'Krake Mentor', text: '¡Hola, explorador! Estamos por llegar a la Tierra, pero... ¿qué es esa señal?', action: 'Continuar' }], next: 'unknown_signal' },
  unknown_signal: { title: 'Fallo en los motores', location: 'ALERTA DE NAVEGACIÓN', artwork: alert, dialogues: [{ speaker: 'Krake Mentor', text: '¡Oh, no! ¡Los motores están fallando! ¡Prepárate para aterrizar!', action: 'Aterrizar' }], next: 'emergency_landing' },
  emergency_landing: { title: 'Un mundo desconocido', location: 'ATERRIZAJE DE EMERGENCIA', artwork: landing, dialogues: [{ speaker: 'Krake Mentor', text: '¡Uf! Eso estuvo cerca. Nuestra nave necesita un nuevo módulo de activación. ¡Vamos a buscar ayuda!', action: 'Buscar ayuda' }], next: 'workshop_dialogue' },
  workshop_dialogue: { title: 'El taller del pueblo', location: 'PRIMER CONTACTO', artwork: workshop, dialogues: [{ speaker: 'Mecánico', text: '¡Hola, viajeros! Parece que también tienen problemas. Una extraña señal ha dañado nuestras máquinas', action: 'Continuar' }, { speaker: 'Krake Mentor', text: '¡Eso mismo nos ocurrió! Veamos qué actividades están realizando aquí', action: 'Ver actividad' }], next: 'riasec_realista_01' },
- riasec_realista_01: { title: 'El taller del pueblo', location: 'EXPLORA TUS INTERESES', artwork: workshop, dialogues: [], questionId: riasecItems[0].id, next: 'first_answer_completed' },
+ riasec_realista_01: { title: 'El taller del pueblo', location: 'EXPLORA TUS INTERESES', artwork: tablet, dialogues: [], questionId: riasecItems[0].id, next: 'first_answer_completed' },
  first_answer_completed: { title: 'El taller del pueblo', location: 'EXPLORACIÓN GUARDADA', artwork: workshop, dialogues: [] },
 };
 
