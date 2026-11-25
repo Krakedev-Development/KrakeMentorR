@@ -1,0 +1,79 @@
+.engine-comic img, .comic-cutscene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.engine-comic img {
+  object-fit: contain;
+  filter: drop-shadow(0 3px 7px #05071699);
+}
+.comic-cutscene { pointer-events: none; }
+.comic-shot { opacity: 0; }
+
+/* Camera anchors are points on the original 1254 × 1254 page. */
+.engine-camera { transform-origin: 190px 950px; }
+.descent-camera { transform-origin: 865px 900px; }
+.comic-cutscene[data-ready="true"] .comic-shot { opacity: 1; }
+.comic-cutscene[data-revealing] .cockpit-aperture { animation: cockpit-wipe 1.2s cubic-bezier(.32,.02,.24,1) 220ms both; }
+.comic-cutscene[data-revealing] .engine-aperture { animation: engine-slash 280ms 2.35s both; }
+.comic-cutscene[data-revealing] .engine-camera { animation: engine-impact 850ms 2.35s both; }
+.comic-cutscene[data-revealing] .descent-aperture { animation: descent-cut 430ms 3.3s both; }
+.comic-cutscene[data-revealing] .descent-camera { animation: follow-ship 1.45s 3.3s both; }
+
+@keyframes cockpit-wipe {
+  from { clip-path: inset(0 100% 0 0) view-box; }
+  to { clip-path: inset(0 0 0 0) view-box; }
+}
+@keyframes engine-slash {
+  from { clip-path: polygon(-15% 47%, -15% 47%, -40% 100%, -40% 100%) view-box; }
+  to { clip-path: polygon(-15% 47%, 65% 47%, 40% 100%, -40% 100%) view-box; }
+}
+@keyframes engine-impact {
+  0% { transform: translate(10px, -8px) scale(1.65); }
+  27% { transform: translate(-9px, 5px) scale(1.26); }
+  42% { transform: translate(4px, -2px) scale(1.13); }
+  100% { transform: none; }
+}
+@keyframes descent-cut {
+  from { clip-path: polygon(0 23%, 100% 0, 100% 0, 0 23%) view-box; }
+  to { clip-path: polygon(0 23%, 100% 0, 100% 101%, 0 124%) view-box; }
+}
+@keyframes follow-ship {
+  0% { transform: translate(65px, 68px) scale(1.85); }
+  38% { transform: translate(5px, 8px) scale(1.38); }
+  100% { transform: none; }
+}
+
+.cockpit-lamps { animation: warning-lamps 2.6s ease-in-out infinite; }
+.console-lamps { animation: warning-lamps 3.1s ease-in-out -1.2s infinite; }
+@keyframes warning-lamps {
+  0%, 26%, 100% { opacity: .04; }
+  43%, 56% { opacity: .82; }
+  72% { opacity: .2; }
+}
+.engine-arc { animation: arc-glow 1.8s linear infinite; }
+.engine-sparks { animation: sparks-out 1.8s ease-out infinite; }
+.engine-embers { animation: sparks-out 2.4s ease-out -.7s infinite; --drift-x: -35px; --drift-y: 46px; }
+@keyframes arc-glow {
+  0%, 12%, 100% { opacity: 0; }
+  5% { opacity: 1; }
+}
+@keyframes sparks-out {
+  0%, 46%, 100% { opacity: 0; }
+  0% { transform: translate(0, 0); }
+  6% { opacity: 1; }
+  46%, 100% { transform: translate(var(--drift-x, 45px), var(--drift-y, -30px)); }
+}
+.drifting-smoke {
+  transform-origin: 745px 850px;
+  animation: smoke-drift 3.8s linear infinite;
+}
+@keyframes smoke-drift {
+  0% { opacity: 0; transform: none; }
+  26%, 61% { opacity: .95; }
+  100% { opacity: 0; transform: translate(-26px, -17px) scale(1.055); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .comic-cutscene { display: none; }
+}

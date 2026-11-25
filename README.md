@@ -57,7 +57,13 @@ No es necesario rehacer los diálogos, la escala, la ayuda ni el repositorio. Un
 
 Se revisaron los cinco PNG proporcionados. No se adjuntó otro documento funcional independiente del prompt. Las dos primeras escenas utilizan los fondos proporcionados `espacio1.png` y `espaciopeligro.png`, respectivamente; la composición CSS se conserva como alternativa si falla una imagen. Se mantienen los personajes integrados en los fondos; no se fabrican retratos a partir de recortes. La pregunta y el banco definitivo requieren revisión y validación antes de uso formal. El indicador de seis actividades describe el nivel previsto; esta entrega incluye solo la primera.
 
-Los paneles permiten desplazamiento vertical en pantallas bajas; por debajo de 360 px, las opciones pasan a una lista de filas de al menos 48 px. En escritorio el contenedor mide como máximo 460 px.
+En móvil, la ilustración cede espacio para que el diálogo o la actividad quepan en el alto visible. Las cinco valoraciones se muestran en una fila. En teléfonos en horizontal, la ficha de actividad se sitúa a la derecha del escenario. En escritorio el contenedor mide como máximo 460 px.
+
+## Fondos animados
+
+Cada escenario combina una ilustración y un MP4 local en `src/game/config.ts`. El juego muestra la ilustración hasta que empieza el video. Con movimiento reducido utiliza la imagen fija. Los turnos del taller comparten la reproducción y el encuadre sigue al personaje que habla.
+
+Los cuatro bucles silenciosos están en `public/assets/motion/`. Se pueden ajustar y volver a renderizar desde las ilustraciones originales con los scripts de `tools/motion/`. Python, NumPy, Pillow, OpenCV y FFmpeg se usan durante la edición de los clips. Para jugar basta con ejecutar el proyecto web.
 
 
 
